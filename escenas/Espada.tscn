@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://cxex4qj4nt0e8"]
+
+[ext_resource type="Script" uid="uid://cywpwracpp1ky" path="res://escenas/espada.gd" id="1_64v0d"]
+[ext_resource type="Texture2D" uid="uid://c05q72ogpxm8f" path="res://sprites/espadanueva3.png" id="2_ggm7l"]
+[ext_resource type="AudioStream" uid="uid://msytrh8sw87w" path="res://sounds/Espada.mp3" id="3_mnxok"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ggm7l"]
+size = Vector2(107, 18)
+
+[node name="Espada" type="Area2D"]
+script = ExtResource("1_64v0d")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(2.5, 1.90735e-06)
+scale = Vector2(0.078776, 0.0449219)
+texture = ExtResource("2_ggm7l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_ggm7l")
+
+[node name="SonidoLanzar" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_mnxok")
+volume_db = -10.505

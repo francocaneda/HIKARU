@@ -1,0 +1,54 @@
+[gd_scene load_steps=2 format=3 uid="uid://ceyalroi2c38y"]
+
+[ext_resource type="Script" uid="uid://bs63pq0fcskok" path="res://escenas/hud.gd" id="1_adsit"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_adsit")
+
+[node name="IconoObjeto1" type="TextureRect" parent="."]
+self_modulate = Color(1, 1, 1, 0.509804)
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 420.0
+offset_top = 15.0
+offset_right = 460.0
+offset_bottom = 55.0
+grow_horizontal = 0
+scale = Vector2(0.08, 0.08)
+
+[node name="IconoObjeto2" type="TextureRect" parent="."]
+self_modulate = Color(1, 1, 1, 0.509804)
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 520.0
+offset_top = 15.0
+offset_right = 560.0
+offset_bottom = 55.0
+grow_horizontal = 0
+scale = Vector2(0.08, 0.08)
+
+[node name="IconoObjeto3" type="TextureRect" parent="."]
+self_modulate = Color(1, 1, 1, 0.509804)
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 620.0
+offset_top = 15.0
+offset_right = 660.0
+offset_bottom = 55.0
+grow_horizontal = 0
+scale = Vector2(0.08, 0.08)
+
+[node name="IconoObjeto4" type="TextureRect" parent="."]
+self_modulate = Color(1, 1, 1, 0.509804)
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 720.0
+offset_top = 15.0
+offset_right = 760.0
+offset_bottom = 55.0
+grow_horizontal = 0
+scale = Vector2(0.08, 0.08)

@@ -1,0 +1,85 @@
+[gd_scene load_steps=12 format=3 uid="uid://skxw54nk4lkr"]
+
+[ext_resource type="Script" uid="uid://b2ui51i4q7d34" path="res://escenas/game_over.gd" id="1_cp6i1"]
+[ext_resource type="FontFile" uid="uid://xlxdarjwu66t" path="res://fonts/morpheus.ttf" id="2_ckchb"]
+[ext_resource type="Texture2D" uid="uid://dd35u3ese6mbg" path="res://sprites/fondoMuerte.jpg" id="2_ees0l"]
+[ext_resource type="AudioStream" uid="uid://bxrai2u3r3pj1" path="res://sounds/sonidoCambio.ogg" id="4_p1x28"]
+[ext_resource type="AudioStream" uid="uid://dyudpn8x4x7lv" path="res://sounds/sonidomenu.mp3" id="5_p1x28"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ckchb"]
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v4ete"]
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p1x28"]
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ees0l"]
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rcbvi"]
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_anhpd"]
+draw_center = false
+
+[node name="GameOver" type="ColorRect"]
+script = ExtResource("1_cp6i1")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1366.0
+offset_bottom = 768.0
+scale = Vector2(0.94, 0.94)
+texture = ExtResource("2_ees0l")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 441.0
+offset_top = 77.0
+offset_right = 818.0
+offset_bottom = 186.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_ckchb")
+theme_override_font_sizes/font_size = 80
+text = "Game Over"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 464.0
+offset_top = 279.0
+offset_right = 788.0
+offset_bottom = 430.0
+mouse_filter = 2
+
+[node name="VolverAJugar" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_focus_color = Color(0.909804, 1, 0, 0.823529)
+theme_override_fonts/font = ExtResource("2_ckchb")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = SubResource("StyleBoxFlat_ckchb")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_v4ete")
+theme_override_styles/normal = SubResource("StyleBoxFlat_p1x28")
+text = "Volver a Jugar"
+
+[node name="Salir" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_focus_color = Color(0.909804, 1, 0, 0.823529)
+theme_override_fonts/font = ExtResource("2_ckchb")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = SubResource("StyleBoxFlat_ees0l")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_rcbvi")
+theme_override_styles/normal = SubResource("StyleBoxFlat_anhpd")
+text = "Salir"
+
+[node name="SonidoSeleccion" type="AudioStreamPlayer" parent="VBoxContainer"]
+stream = ExtResource("4_p1x28")
+volume_db = -20.485
+
+[node name="MusicaGameOver" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_p1x28")
+
+[connection signal="pressed" from="VBoxContainer/VolverAJugar" to="." method="_on_volver_a_jugar_pressed"]
+[connection signal="pressed" from="VBoxContainer/Salir" to="." method="_on_salir_pressed"]

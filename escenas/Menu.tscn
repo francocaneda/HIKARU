@@ -1,0 +1,106 @@
+[gd_scene load_steps=15 format=3 uid="uid://c5tjqewyqiflh"]
+
+[ext_resource type="Script" uid="uid://d0hu1gr48wnbw" path="res://escenas/menu.gd" id="1_hw27t"]
+[ext_resource type="FontFile" uid="uid://xlxdarjwu66t" path="res://fonts/morpheus.ttf" id="2_37x5u"]
+[ext_resource type="Texture2D" uid="uid://bd0fxslh8rjbj" path="res://sprites/fondoMenu.jpg" id="2_pg16i"]
+[ext_resource type="AudioStream" uid="uid://dyudpn8x4x7lv" path="res://sounds/sonidomenu.mp3" id="4_gglsf"]
+[ext_resource type="AudioStream" uid="uid://bxrai2u3r3pj1" path="res://sounds/sonidoCambio.ogg" id="4_myo1p"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8en0t"]
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jg6t6"]
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pg16i"]
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0lotp"]
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tjkoc"]
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gglsf"]
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nmamb"]
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cexf4"]
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_myo1p"]
+draw_center = false
+
+[node name="Menu" type="Panel"]
+script = ExtResource("1_hw27t")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1912.0
+offset_bottom = 1080.0
+scale = Vector2(0.67, 0.67)
+texture = ExtResource("2_pg16i")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 212.0
+offset_top = 318.0
+offset_right = 408.0
+offset_bottom = 519.0
+mouse_filter = 2
+
+[node name="Jugar" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/icon_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0.909804, 1, 0, 0.823529)
+theme_override_fonts/font = ExtResource("2_37x5u")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = SubResource("StyleBoxFlat_8en0t")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_jg6t6")
+theme_override_styles/normal = SubResource("StyleBoxFlat_pg16i")
+text = "Jugar"
+
+[node name="Sonido" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_focus_color = Color(0.909804, 1, 0, 0.823529)
+theme_override_fonts/font = ExtResource("2_37x5u")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = SubResource("StyleBoxFlat_0lotp")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_tjkoc")
+theme_override_styles/normal = SubResource("StyleBoxFlat_gglsf")
+text = "Sonido"
+
+[node name="Salir" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_focus_color = Color(0.909804, 1, 0, 0.823529)
+theme_override_fonts/font = ExtResource("2_37x5u")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = SubResource("StyleBoxFlat_nmamb")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_cexf4")
+theme_override_styles/normal = SubResource("StyleBoxFlat_myo1p")
+text = "Salir
+"
+
+[node name="SonidoSeleccion" type="AudioStreamPlayer" parent="VBoxContainer"]
+stream = ExtResource("4_myo1p")
+volume_db = -20.485
+
+[node name="MusicaMenu" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_gglsf")
+autoplay = true
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 156.0
+offset_top = 74.0
+offset_right = 479.0
+offset_bottom = 197.0
+theme_override_fonts/font = ExtResource("2_37x5u")
+theme_override_font_sizes/font_size = 90
+text = "HIKARU"
+
+[connection signal="pressed" from="VBoxContainer/Jugar" to="." method="_on_jugar_pressed"]
+[connection signal="pressed" from="VBoxContainer/Sonido" to="." method="_on_sonido_pressed"]
+[connection signal="pressed" from="VBoxContainer/Salir" to="." method="_on_salir_pressed"]

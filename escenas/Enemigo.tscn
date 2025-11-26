@@ -1,0 +1,141 @@
+[gd_scene load_steps=19 format=3 uid="uid://blbxgv5i042mn"]
+
+[ext_resource type="Script" uid="uid://dlayi4o12g75q" path="res://escenas/enemigo.gd" id="1_183jt"]
+[ext_resource type="Texture2D" uid="uid://boioojyl0g61j" path="res://sprites/enemigo.png" id="2_183jt"]
+[ext_resource type="AudioStream" uid="uid://dq45yrjblhrlm" path="res://sounds/EnemigoMuerto2.mp3" id="3_8o0jf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8o0jf"]
+atlas = ExtResource("2_183jt")
+region = Rect2(0, 0, 48, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pqlov"]
+atlas = ExtResource("2_183jt")
+region = Rect2(48, 0, 48, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ngopa"]
+atlas = ExtResource("2_183jt")
+region = Rect2(96, 0, 48, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g7x46"]
+atlas = ExtResource("2_183jt")
+region = Rect2(0, 192, 48, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dxnq1"]
+atlas = ExtResource("2_183jt")
+region = Rect2(48, 192, 48, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_chp7c"]
+atlas = ExtResource("2_183jt")
+region = Rect2(96, 192, 48, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nkg5f"]
+atlas = ExtResource("2_183jt")
+region = Rect2(0, 128, 48, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p4thj"]
+atlas = ExtResource("2_183jt")
+region = Rect2(48, 128, 48, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bbelo"]
+atlas = ExtResource("2_183jt")
+region = Rect2(96, 128, 48, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x4tkp"]
+atlas = ExtResource("2_183jt")
+region = Rect2(0, 64, 48, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nssso"]
+atlas = ExtResource("2_183jt")
+region = Rect2(48, 64, 48, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2svl2"]
+atlas = ExtResource("2_183jt")
+region = Rect2(96, 64, 48, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mmv7d"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8o0jf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pqlov")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ngopa")
+}],
+"loop": true,
+"name": &"enemigoabajo",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g7x46")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dxnq1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_chp7c")
+}],
+"loop": true,
+"name": &"enemigoarriba",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nkg5f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p4thj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bbelo")
+}],
+"loop": true,
+"name": &"enemigoderecha",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x4tkp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nssso")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2svl2")
+}],
+"loop": true,
+"name": &"enemigoizquierda",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pqlov"]
+radius = 29.0172
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_183jt"]
+radius = 32.0624
+
+[node name="Enemigo" type="CharacterBody2D" groups=["Enemigo"]]
+script = ExtResource("1_183jt")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-9.53674e-07, -4)
+scale = Vector2(1.5306, 1.28027)
+sprite_frames = SubResource("SpriteFrames_mmv7d")
+animation = &"enemigoizquierda"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_pqlov")
+
+[node name="Detector" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detector"]
+shape = SubResource("CircleShape2D_183jt")
+
+[node name="SonidoMuerte" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_8o0jf")
+volume_db = -4.727
+
+[connection signal="body_entered" from="Detector" to="." method="_on_detector_body_entered"]

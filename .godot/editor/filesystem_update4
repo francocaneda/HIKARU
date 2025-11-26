@@ -1,0 +1,12 @@
+res://escenas/Menu.tscn
+res://escenas/Sala2.tscn
+res://escenas/Sala.tscn
+res://escenas/Sala3.tscn
+res://escenas/Jugador.tscn
+res://escenas/Espada.tscn
+res://escenas/sala_2.gd
+res://escenas/Sala4.tscn
+res://escenas/jugador.gd
+res://escenas/sala_4.gd
+res://escenas/global.gd
+res://escenas/sala_3.gd

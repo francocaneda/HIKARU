@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://b0ely6o20otbg"]
+
+[ext_resource type="AudioStream" uid="uid://vl4cw7ycqcvc" path="res://sounds/musicaFondo.ogg" id="1_kinov"]
+
+[node name="MusicaSala" type="AudioStreamPlayer"]
+stream = ExtResource("1_kinov")
+volume_db = -16.808

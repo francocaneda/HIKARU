@@ -1,0 +1,108 @@
+[gd_scene load_steps=17 format=3 uid="uid://nusfdxpnqsgu"]
+
+[ext_resource type="PackedScene" uid="uid://bea5ula71tjjd" path="res://escenas/Jugador.tscn" id="1_0sm88"]
+[ext_resource type="Script" uid="uid://cgre0p3gc4abe" path="res://escenas/sala.gd" id="1_5oesj"]
+[ext_resource type="PackedScene" uid="uid://b51jbkrj6udhp" path="res://escenas/Escudo.tscn" id="3_r1177"]
+[ext_resource type="PackedScene" uid="uid://boonqd33wcjm6" path="res://escenas/ParedSecreta.tscn" id="4_g3tfo"]
+[ext_resource type="Texture2D" uid="uid://cxnlowaypk4i2" path="res://sprites/sala1.png" id="4_tj3du"]
+[ext_resource type="PackedScene" uid="uid://blbxgv5i042mn" path="res://escenas/Enemigo.tscn" id="4_y30om"]
+[ext_resource type="PackedScene" uid="uid://b0kip1stqegow" path="res://escenas/EnemigoVolador.tscn" id="6_ej1n1"]
+[ext_resource type="PackedScene" uid="uid://7st2fjxi8hoq" path="res://escenas/EnemigoToro.tscn" id="8_tj3du"]
+[ext_resource type="PackedScene" uid="uid://ceyalroi2c38y" path="res://escenas/HUD.tscn" id="9_tj3du"]
+[ext_resource type="AudioStream" uid="uid://vl4cw7ycqcvc" path="res://sounds/musicaFondo.ogg" id="10_hj8ey"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nx6ol"]
+size = Vector2(1217, 18.75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5oesj"]
+size = Vector2(21.25, 250)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ej1n1"]
+size = Vector2(22.5, 279)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3mb2o"]
+size = Vector2(27.4336, 674.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r1177"]
+size = Vector2(1196, 17.75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tj3du"]
+size = Vector2(65, 94)
+
+[node name="Dungeon" type="Node2D"]
+position = Vector2(640, 360)
+
+[node name="Sala" type="Node2D" parent="."]
+script = ExtResource("1_5oesj")
+escena_enemigo_volador = ExtResource("6_ej1n1")
+escena_pared_secreta = ExtResource("4_g3tfo")
+
+[node name="Sprite2D" type="Sprite2D" parent="Sala"]
+position = Vector2(-2.00002, -1.75)
+scale = Vector2(0.996875, 0.893125)
+texture = ExtResource("4_tj3du")
+
+[node name="Pared" type="StaticBody2D" parent="Sala"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sala/Pared"]
+position = Vector2(-1, -311)
+shape = SubResource("RectangleShape2D_nx6ol")
+debug_color = Color(0.665129, 0.316256, 0.997179, 0.42)
+
+[node name="Pared2" type="StaticBody2D" parent="Sala"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sala/Pared2"]
+position = Vector2(540.375, -202)
+shape = SubResource("RectangleShape2D_5oesj")
+debug_color = Color(0.722266, 0.246589, 1, 0.42)
+
+[node name="ParedSecreta" parent="Sala" instance=ExtResource("4_g3tfo")]
+
+[node name="Pared6" type="StaticBody2D" parent="Sala"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sala/Pared6"]
+position = Vector2(542, 179)
+shape = SubResource("RectangleShape2D_ej1n1")
+debug_color = Color(0.722266, 0.246589, 1, 0.42)
+
+[node name="Pared3" type="StaticBody2D" parent="Sala"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sala/Pared3"]
+position = Vector2(-554.283, 7.25)
+shape = SubResource("RectangleShape2D_3mb2o")
+debug_color = Color(0.743934, 0.211879, 1, 0.42)
+
+[node name="Pared4" type="StaticBody2D" parent="Sala"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sala/Pared4"]
+position = Vector2(9, 260)
+shape = SubResource("RectangleShape2D_r1177")
+debug_color = Color(0.730133, 0.238676, 0.995592, 0.42)
+
+[node name="Jugador" parent="Sala" instance=ExtResource("1_0sm88")]
+position = Vector2(-442, 0)
+
+[node name="Camera2D" type="Camera2D" parent="Sala"]
+
+[node name="Escudo" parent="Sala" instance=ExtResource("3_r1177")]
+position = Vector2(363, -21)
+
+[node name="Enemigo" parent="Sala" instance=ExtResource("4_y30om")]
+position = Vector2(381, -198)
+
+[node name="EnemigoToro" parent="Sala" instance=ExtResource("8_tj3du")]
+position = Vector2(385, 172)
+
+[node name="DetectorSala2" type="Area2D" parent="Sala"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sala/DetectorSala2"]
+position = Vector2(590, -7)
+shape = SubResource("RectangleShape2D_tj3du")
+
+[node name="HUD" parent="Sala" instance=ExtResource("9_tj3du")]
+
+[node name="MusicaSala" type="AudioStreamPlayer" parent="Sala"]
+stream = ExtResource("10_hj8ey")
+volume_db = -15.913
+
+[connection signal="body_entered" from="Sala/DetectorSala2" to="Sala" method="_on_detector_sala_2_body_entered"]

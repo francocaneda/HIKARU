@@ -1,0 +1,142 @@
+[gd_scene load_steps=19 format=3 uid="uid://cm76sxp40xoq3"]
+
+[ext_resource type="Script" uid="uid://1hncoj2gr4de" path="res://escenas/boss_final.gd" id="1_nw804"]
+[ext_resource type="Texture2D" uid="uid://cb0yxugy25o12" path="res://sprites/BossFinal.png" id="1_q1ma1"]
+[ext_resource type="AudioStream" uid="uid://dq45yrjblhrlm" path="res://sounds/EnemigoMuerto2.mp3" id="3_j63wm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nw804"]
+atlas = ExtResource("1_q1ma1")
+region = Rect2(0, 128, 48, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j63wm"]
+atlas = ExtResource("1_q1ma1")
+region = Rect2(48, 128, 48, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m0oay"]
+atlas = ExtResource("1_q1ma1")
+region = Rect2(96, 128, 48, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ulnqd"]
+atlas = ExtResource("1_q1ma1")
+region = Rect2(0, 0, 48, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eq8cj"]
+atlas = ExtResource("1_q1ma1")
+region = Rect2(48, 0, 48, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ikn0"]
+atlas = ExtResource("1_q1ma1")
+region = Rect2(96, 0, 48, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_geg54"]
+atlas = ExtResource("1_q1ma1")
+region = Rect2(0, 64, 48, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ltkug"]
+atlas = ExtResource("1_q1ma1")
+region = Rect2(48, 64, 48, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4a31k"]
+atlas = ExtResource("1_q1ma1")
+region = Rect2(96, 64, 48, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xlpmy"]
+atlas = ExtResource("1_q1ma1")
+region = Rect2(0, 192, 48, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8cxh3"]
+atlas = ExtResource("1_q1ma1")
+region = Rect2(48, 192, 48, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2q04a"]
+atlas = ExtResource("1_q1ma1")
+region = Rect2(96, 192, 48, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bjjo5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nw804")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j63wm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m0oay")
+}],
+"loop": true,
+"name": &"enemigoabajo",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ulnqd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eq8cj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ikn0")
+}],
+"loop": true,
+"name": &"enemigoarriba",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_geg54")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ltkug")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4a31k")
+}],
+"loop": true,
+"name": &"enemigoderecha",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xlpmy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8cxh3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2q04a")
+}],
+"loop": true,
+"name": &"enemigoizquierda",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m0oay"]
+size = Vector2(85.5, 85.625)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ulnqd"]
+size = Vector2(97, 98)
+
+[node name="BossFinal" type="CharacterBody2D" groups=["Enemigo"]]
+script = ExtResource("1_nw804")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -1)
+scale = Vector2(2.54167, 2.3125)
+sprite_frames = SubResource("SpriteFrames_bjjo5")
+animation = &"enemigoabajo"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 7.8125)
+shape = SubResource("RectangleShape2D_m0oay")
+
+[node name="Detector" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detector"]
+position = Vector2(1.5, 8)
+shape = SubResource("RectangleShape2D_ulnqd")
+
+[node name="SonidoMuerte" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_j63wm")
+
+[connection signal="body_entered" from="Detector" to="." method="_on_detector_body_entered"]

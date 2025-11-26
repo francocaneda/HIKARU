@@ -1,0 +1,78 @@
+[gd_scene load_steps=8 format=3 uid="uid://cinptmh1023dj"]
+
+[ext_resource type="Script" uid="uid://44m5qhhleymj" path="res://escenas/enemigo_techo.gd" id="1_8v4d0"]
+[ext_resource type="Texture2D" uid="uid://ogwa6ek3q5ly" path="res://sprites/EnemigoTecho.png" id="2_io2t3"]
+[ext_resource type="AudioStream" uid="uid://dq45yrjblhrlm" path="res://sounds/EnemigoMuerto2.mp3" id="3_io2t3"]
+[ext_resource type="Texture2D" uid="uid://bvm4mpxasp06l" path="res://sprites/EnemigoTecho2.png" id="3_kk07t"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kk07t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_io2t3")
+}],
+"loop": true,
+"name": &"carga",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_kk07t")
+}],
+"loop": true,
+"name": &"disparo",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_io2t3")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4xgmx"]
+size = Vector2(84, 45)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wbk2l"]
+size = Vector2(94, 54)
+
+[node name="TorretaTecho" type="CharacterBody2D" groups=["Enemigo"]]
+script = ExtResource("1_8v4d0")
+
+[node name="LaserVisual" type="Line2D" parent="."]
+visible = false
+modulate = Color(0.835718, 1.73271e-06, 4.81307e-07, 1)
+self_modulate = Color(0.835294, 0, 0, 1)
+z_index = 20
+points = PackedVector2Array(0, 25)
+width = 20.0
+default_color = Color(0.848603, 0.150478, 0, 1)
+joint_mode = 2
+
+[node name="anim" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1.68333, 1.85345)
+sprite_frames = SubResource("SpriteFrames_kk07t")
+animation = &"carga"
+
+[node name="RayoLaser" type="RayCast2D" parent="."]
+enabled = false
+target_position = Vector2(0, 3000)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, -1.5)
+shape = SubResource("RectangleShape2D_4xgmx")
+
+[node name="AreaDisparo" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaDisparo"]
+position = Vector2(1, -1)
+shape = SubResource("RectangleShape2D_wbk2l")
+
+[node name="SonidoMuerte" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_io2t3")
+volume_db = -4.684
+
+[connection signal="body_entered" from="AreaDisparo" to="." method="_on_detector_body_entered"]
+[connection signal="body_exited" from="AreaDisparo" to="." method="_on_area_disparo_body_exited"]

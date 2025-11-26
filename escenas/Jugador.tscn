@@ -1,0 +1,164 @@
+[gd_scene load_steps=23 format=3 uid="uid://bea5ula71tjjd"]
+
+[ext_resource type="Script" uid="uid://8akg5fn5e6ud" path="res://escenas/jugador.gd" id="1_8hr1h"]
+[ext_resource type="Texture2D" uid="uid://c4smk7ernwg70" path="res://sprites/hikaru.png" id="2_rk7g7"]
+[ext_resource type="PackedScene" uid="uid://cxex4qj4nt0e8" path="res://escenas/Espada.tscn" id="3_5bp30"]
+[ext_resource type="AudioStream" uid="uid://ce8nim6sr62t3" path="res://sounds/sonidoderrota.mp3" id="4_st15h"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rk7g7"]
+atlas = ExtResource("2_rk7g7")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5bp30"]
+atlas = ExtResource("2_rk7g7")
+region = Rect2(0, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_st15h"]
+atlas = ExtResource("2_rk7g7")
+region = Rect2(0, 96, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s1vfj"]
+atlas = ExtResource("2_rk7g7")
+region = Rect2(0, 144, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eexci"]
+atlas = ExtResource("2_rk7g7")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uespe"]
+atlas = ExtResource("2_rk7g7")
+region = Rect2(96, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p52f3"]
+atlas = ExtResource("2_rk7g7")
+region = Rect2(96, 96, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ig1bj"]
+atlas = ExtResource("2_rk7g7")
+region = Rect2(96, 144, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_meqng"]
+atlas = ExtResource("2_rk7g7")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yn8ju"]
+atlas = ExtResource("2_rk7g7")
+region = Rect2(144, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lctvp"]
+atlas = ExtResource("2_rk7g7")
+region = Rect2(144, 96, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_475hk"]
+atlas = ExtResource("2_rk7g7")
+region = Rect2(144, 144, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ddw1h"]
+atlas = ExtResource("2_rk7g7")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_op6lh"]
+atlas = ExtResource("2_rk7g7")
+region = Rect2(48, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ko7k4"]
+atlas = ExtResource("2_rk7g7")
+region = Rect2(48, 96, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pvtpb"]
+atlas = ExtResource("2_rk7g7")
+region = Rect2(48, 144, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ooj51"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rk7g7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5bp30")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_st15h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s1vfj")
+}],
+"loop": true,
+"name": &"personajeabajo",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eexci")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uespe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p52f3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ig1bj")
+}],
+"loop": true,
+"name": &"personajearriba",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_meqng")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yn8ju")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lctvp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_475hk")
+}],
+"loop": true,
+"name": &"personajederecha",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ddw1h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_op6lh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ko7k4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pvtpb")
+}],
+"loop": true,
+"name": &"personajeizquierda",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rk7g7"]
+radius = 31.0
+height = 78.0
+
+[node name="Jugador" type="CharacterBody2D" groups=["Jugador"]]
+script = ExtResource("1_8hr1h")
+
+[node name="Espada" parent="." instance=ExtResource("3_5bp30")]
+position = Vector2(86, 1)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(2.13276, -11)
+scale = Vector2(2.38053, 2.1849)
+sprite_frames = SubResource("SpriteFrames_ooj51")
+animation = &"personajederecha"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(3, -4)
+shape = SubResource("CapsuleShape2D_rk7g7")
+
+[node name="SonidoMuerte" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_st15h")

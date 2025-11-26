@@ -1,0 +1,84 @@
+[gd_scene load_steps=12 format=3 uid="uid://dkl8ltij84owv"]
+
+[ext_resource type="Texture2D" uid="uid://c2ckjep3l2l7n" path="res://sprites/sala4.png" id="1_2srdr"]
+[ext_resource type="Script" uid="uid://bsu8avyxgqdr" path="res://escenas/sala_4.gd" id="1_j7lg5"]
+[ext_resource type="PackedScene" uid="uid://bea5ula71tjjd" path="res://escenas/Jugador.tscn" id="2_3gifm"]
+[ext_resource type="AudioStream" uid="uid://vl4cw7ycqcvc" path="res://sounds/musicaFondo.ogg" id="3_s7ubc"]
+[ext_resource type="PackedScene" uid="uid://cinptmh1023dj" path="res://escenas/EnemigoTecho.tscn" id="3_vl02v"]
+[ext_resource type="PackedScene" uid="uid://7st2fjxi8hoq" path="res://escenas/EnemigoToro.tscn" id="4_j7lg5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ynsqx"]
+size = Vector2(470, 19)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d3gpj"]
+size = Vector2(21, 578)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3gifm"]
+size = Vector2(1127, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s7ubc"]
+size = Vector2(236, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vl02v"]
+size = Vector2(198, 20)
+
+[node name="Sala4" type="Node2D"]
+script = ExtResource("1_j7lg5")
+escena_enemigo_toro = ExtResource("4_j7lg5")
+escena_enemigo_techo = ExtResource("3_vl02v")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(639, 359.5)
+scale = Vector2(0.832031, 0.700195)
+texture = ExtResource("1_2srdr")
+
+[node name="Pared" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pared"]
+position = Vector2(308, 48)
+shape = SubResource("RectangleShape2D_ynsqx")
+
+[node name="Pared2" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pared2"]
+position = Vector2(952, 48)
+shape = SubResource("RectangleShape2D_ynsqx")
+
+[node name="Pared3" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pared3"]
+position = Vector2(42, 343)
+shape = SubResource("RectangleShape2D_d3gpj")
+
+[node name="Pared4" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pared4"]
+position = Vector2(1209, 338)
+shape = SubResource("RectangleShape2D_d3gpj")
+
+[node name="Pared5" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pared5"]
+position = Vector2(626.5, 623)
+shape = SubResource("RectangleShape2D_3gifm")
+
+[node name="ParedSecreta" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ParedSecreta"]
+position = Vector2(628, 48)
+shape = SubResource("RectangleShape2D_s7ubc")
+debug_color = Color(0.84077, 0.165469, 0.838935, 0.42)
+
+[node name="Jugador" parent="." instance=ExtResource("2_3gifm")]
+position = Vector2(631, 122)
+
+[node name="DetectorSala2" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectorSala2"]
+position = Vector2(631, 45)
+shape = SubResource("RectangleShape2D_vl02v")
+
+[node name="MusicaSala" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_s7ubc")
+
+[connection signal="body_entered" from="DetectorSala2" to="." method="_on_detector_sala_2_body_entered"]

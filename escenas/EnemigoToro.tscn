@@ -1,0 +1,141 @@
+[gd_scene load_steps=19 format=3 uid="uid://7st2fjxi8hoq"]
+
+[ext_resource type="Script" uid="uid://bba3rxwlqngjx" path="res://escenas/enemigo_toro.gd" id="1_2ji6b"]
+[ext_resource type="Texture2D" uid="uid://kjoxvoiech16" path="res://sprites/EnemigoToro.png" id="2_2ji6b"]
+[ext_resource type="AudioStream" uid="uid://dq45yrjblhrlm" path="res://sounds/EnemigoMuerto2.mp3" id="3_xxsfg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6imnb"]
+atlas = ExtResource("2_2ji6b")
+region = Rect2(0, 128, 48, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xxsfg"]
+atlas = ExtResource("2_2ji6b")
+region = Rect2(48, 128, 48, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_udwu6"]
+atlas = ExtResource("2_2ji6b")
+region = Rect2(96, 128, 48, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hb54t"]
+atlas = ExtResource("2_2ji6b")
+region = Rect2(0, 0, 48, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_62a2e"]
+atlas = ExtResource("2_2ji6b")
+region = Rect2(48, 0, 48, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uu1da"]
+atlas = ExtResource("2_2ji6b")
+region = Rect2(96, 0, 48, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j5vno"]
+atlas = ExtResource("2_2ji6b")
+region = Rect2(0, 64, 48, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tpcqj"]
+atlas = ExtResource("2_2ji6b")
+region = Rect2(48, 64, 48, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7myjw"]
+atlas = ExtResource("2_2ji6b")
+region = Rect2(96, 64, 48, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n5i32"]
+atlas = ExtResource("2_2ji6b")
+region = Rect2(0, 192, 48, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wkavl"]
+atlas = ExtResource("2_2ji6b")
+region = Rect2(48, 192, 48, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xjy2o"]
+atlas = ExtResource("2_2ji6b")
+region = Rect2(96, 192, 48, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qg0xy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6imnb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xxsfg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_udwu6")
+}],
+"loop": true,
+"name": &"enemigoabajo",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hb54t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_62a2e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uu1da")
+}],
+"loop": true,
+"name": &"enemigoarriba",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j5vno")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tpcqj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7myjw")
+}],
+"loop": true,
+"name": &"enemigoderecha",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n5i32")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wkavl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xjy2o")
+}],
+"loop": true,
+"name": &"enemigoizquierda",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pqlov"]
+radius = 29.0172
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_183jt"]
+radius = 32.0624
+
+[node name="EnemigoToro" type="CharacterBody2D" groups=["Enemigo"]]
+script = ExtResource("1_2ji6b")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-9.53674e-07, -4)
+scale = Vector2(1.5306, 1.28027)
+sprite_frames = SubResource("SpriteFrames_qg0xy")
+animation = &"enemigoizquierda"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_pqlov")
+
+[node name="Detector" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detector"]
+shape = SubResource("CircleShape2D_183jt")
+
+[node name="SonidoMuerte" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_xxsfg")
+volume_db = -4.727
+
+[connection signal="body_entered" from="Detector" to="." method="_on_detector_body_entered"]
